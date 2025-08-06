@@ -1,85 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Programa Especial para Acesso de Estudantes ao IFFar</title>
+  <!-- Link para Open Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Open Sans', Arial, sans-serif;
       background-color: #f4f4f4;
       padding: 20px;
       max-width: 700px;
       margin: auto;
       color: #333;
     }
+
     h1 {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 700; /* bold */
       color: #00703c;
+      margin-bottom: 10px;
+      text-align: center;
     }
-    .intro {
-      background-color: #e8f5e9;
-      border-left: 5px solid #00703c;
-      padding: 15px;
-      margin-bottom: 20px;
+
+    h1 + p {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600; /* semi-bold */
+      font-size: 1.5em;
+      color: #00703c;
+      margin-top: 30px; /* maior distância do título */
+      margin-bottom: 30px;
+      text-align: center;
     }
+
     .question {
       display: none;
       margin-bottom: 20px;
     }
+
     .question.active {
       display: block;
     }
+
     .breadcrumbs {
       font-size: 0.9em;
-      color: #555;
-      margin-bottom: 10px;
+      color: #333;
+      background: #fff;
+      border-left: 4px solid #ccc;
+      padding: 10px;
+      margin-bottom: 15px;
     }
+
     button {
-      margin: 5px 0;
-      padding: 10px 15px;
-      background-color: #00703c;
+      margin: 5px 10px 5px 0;
+      padding: 10px 20px;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      min-width: 100px;
     }
-    button:hover {
+
+    .btn-sim {
+      background-color: #00703c;
+    }
+
+    .btn-sim:hover {
       background-color: #005a2e;
     }
+
+    .btn-nao {
+      background-color: #0077b6;
+    }
+
+    .btn-nao:hover {
+      background-color: #005f8a;
+    }
+
     .result {
       background-color: #fff3e0;
       border-left: 5px solid #ff6f00;
       padding: 15px;
       margin-top: 20px;
     }
+
     .logo {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 100px;
     }
+
     .logo img {
       max-width: 200px;
     }
   </style>
 </head>
 <body>
-  <h1>Programa Especial para Acesso de Estudantes ao IFFar</h1>
-  <div class="intro">
-    <p>O IFFar reserva vagas para cotas de estudantes oriundos de escola pública ou de escolas comunitárias no âmbito da Educação do Campo; pessoas com deficiência; pessoas autodeclaradas pretas, pardas ou indígenas; quilombolas; e conforme a renda.</p>
-    <p><strong>As vagas ofertadas pelo IFFar são distribuídas assim:</strong></p>
-    <ul>
-      <li>60% - destinadas à Programa Especial para Acesso de Estudantes ao IFFar.</li>
-      <li>35% - Ampla Concorrência - (AC)</li>
-      <li>5% - Pessoas com Deficiência (PcD) e que não tenham cursado integralmente o Ensino Fundamental em Escola Pública - (Cota PcD)</li>
-    </ul>
-    <p>Todas as informações sobre cotas estão no edital de abertura do seu processo seletivo.</p>
-  </div>
+  <h1>Vamos te ajudar a identificar a sua categoria de cota no IFFar</h1>
+  <p>Programa Especial para Acesso de Estudantes ao IFFar</p>
 
-  <div id="simulador">
-    <!-- AQUI VAI O SCRIPT JAVASCRIPT + HTML DAS PERGUNTAS -->
-  </div>
+  <div id="simulador"></div>
 
   <div class="logo">
-    <img src="https://www.iffarroupilha.edu.br/component/k2/attachments/download/22027/ef96355de6189ce47c7f1a661adf2859" alt="Logo do IFFar">
+    <img src="https://www.iffarroupilha.edu.br/component/k2/attachments/download/22027/ef96355de6189ce47c7f1a661adf2859" alt="Logo do IFFar"/>
   </div>
 
   <script>
@@ -94,29 +117,29 @@
       {
         text: "Sua renda familiar bruta mensal per capita é igual ou inferior a 1,5 salário mínimo?",
         options: [
-          { label: "Sim", next: 2, breadcrumb: "Baixa renda" },
-          { label: "Não", next: 2, breadcrumb: "Não baixa renda" }
+          { label: "Sim", next: 2 },
+          { label: "Não", next: 2 }
         ]
       },
       {
         text: "Você se autodeclara preto, pardo ou indígena (PPI)?",
         options: [
-          { label: "Sim", next: 3, breadcrumb: "PPI" },
-          { label: "Não", next: 3, breadcrumb: "Não PPI" }
+          { label: "Sim", next: 3 },
+          { label: "Não", next: 3 }
         ]
       },
       {
         text: "Você é quilombola?",
         options: [
-          { label: "Sim", next: 4, breadcrumb: "Quilombola" },
-          { label: "Não", next: 4, breadcrumb: "Não quilombola" }
+          { label: "Sim", next: 4 },
+          { label: "Não", next: 4 }
         ]
       },
       {
         text: "Você é pessoa com deficiência (PcD)?",
         options: [
-          { label: "Sim", next: 'resultado', breadcrumb: "PcD" },
-          { label: "Não", next: 'resultado', breadcrumb: "Não PcD" }
+          { label: "Sim", next: 'resultado' },
+          { label: "Não", next: 'resultado' }
         ]
       },
       {
@@ -143,7 +166,6 @@
       }
     };
 
-    let current = 0;
     let trail = [];
 
     const container = document.getElementById("simulador");
@@ -151,27 +173,26 @@
     function renderQuestion(index) {
       const q = questions[index];
       let html = "";
+
       if (trail.length > 0) {
-        html += `<div class='breadcrumbs'>Você respondeu: ${trail.join(" → ")}</div>`;
+        html += `<div class='breadcrumbs'><strong>Caminho até aqui:</strong><br/>${trail.map(t => `<div>➡ ${t.pergunta} <strong>${t.resposta}</strong></div>`).join("")}</div>`;
       }
+
       html += `<div class='question active'><p><strong>${q.text}</strong></p>`;
       q.options.forEach(opt => {
-        html += `<button onclick='handleAnswer(${JSON.stringify(index)}, ${JSON.stringify(opt)})'>${opt.label}</button>`;
+        const btnClass = opt.label === "Sim" ? "btn-sim" : "btn-nao";
+        html += `<button class='${btnClass}' onclick='handleAnswer(${index}, "${opt.label}", ${JSON.stringify(opt.next)})'>${opt.label}</button>`;
       });
       html += `</div>`;
       container.innerHTML = html;
     }
 
-    function handleAnswer(index, option) {
-      if (option.breadcrumb) trail.push(option.label);
-      if (option.next === 'resultado') {
-        showResult('resultado');
-      } else if (option.next === 'resultado_pcd') {
-        showResult('resultado_pcd');
-      } else if (option.next === 'resultado_ac') {
-        showResult('resultado_ac');
+    function handleAnswer(index, resposta, next) {
+      trail.push({ pergunta: questions[index].text, resposta: resposta });
+      if (next === 'resultado' || next === 'resultado_pcd' || next === 'resultado_ac') {
+        showResult(next);
       } else {
-        renderQuestion(option.next);
+        renderQuestion(next);
       }
     }
 
