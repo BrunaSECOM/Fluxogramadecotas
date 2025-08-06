@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa Especial para Acesso de Estudantes ao IFFar</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+      color: #333;
+    }
+    h1 {
+      color: #00703c;
+    }
+    .intro {
+      background-color: #e8f5e9;
+      border-left: 5px solid #00703c;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .question {
+      display: none;
+      margin-bottom: 20px;
+    }
+    .question.active {
+      display: block;
+    }
+    .breadcrumbs {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    button {
+      margin: 5px 0;
+      padding: 10px 15px;
+      background-color: #00703c;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005a2e;
+    }
+    .result {
+      background-color: #fff3e0;
+      border-left: 5px solid #ff6f00;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .logo {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .logo img {
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Programa Especial para Acesso de Estudantes ao IFFar</h1>
+  <div class="intro">
+    <p>O IFFar reserva vagas para cotas de estudantes oriundos de escola pública ou de escolas comunitárias no âmbito da Educação do Campo; pessoas com deficiência; pessoas autodeclaradas pretas, pardas ou indígenas; quilombolas; e conforme a renda.</p>
+    <p><strong>As vagas ofertadas pelo IFFar são distribuídas assim:</strong></p>
+    <ul>
+      <li>60% - destinadas à Programa Especial para Acesso de Estudantes ao IFFar.</li>
+      <li>35% - Ampla Concorrência - (AC)</li>
+      <li>5% - Pessoas com Deficiência (PcD) e que não tenham cursado integralmente o Ensino Fundamental em Escola Pública - (Cota PcD)</li>
+    </ul>
+    <p>Todas as informações sobre cotas estão no edital de abertura do seu processo seletivo.</p>
+  </div>
+
+  <div id="simulador">
+    <!-- AQUI VAI O SCRIPT JAVASCRIPT + HTML DAS PERGUNTAS -->
+  </div>
+
+  <div class="logo">
+    <img src="https://www.iffarroupilha.edu.br/component/k2/attachments/download/22027/ef96355de6189ce47c7f1a661adf2859" alt="Logo do IFFar">
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "Você cursou integralmente o Ensino Fundamental em escola pública ou de escolas comunitárias no âmbito da Educação do Campo?",
+        options: [
+          { label: "Sim", next: 1 },
+          { label: "Não", next: 5 }
+        ]
+      },
+      {
+        text: "Sua renda familiar bruta mensal per capita é igual ou inferior a 1,5 salário mínimo?",
+        options: [
+          { label: "Sim", next: 2, breadcrumb: "Baixa renda" },
+          { label: "Não", next: 2, breadcrumb: "Não baixa renda" }
+        ]
+      },
+      {
+        text: "Você se autodeclara preto, pardo ou indígena (PPI)?",
+        options: [
+          { label: "Sim", next: 3, breadcrumb: "PPI" },
+          { label: "Não", next: 3, breadcrumb: "Não PPI" }
+        ]
+      },
+      {
+        text: "Você é quilombola?",
+        options: [
+          { label: "Sim", next: 4, breadcrumb: "Quilombola" },
+          { label: "Não", next: 4, breadcrumb: "Não quilombola" }
+        ]
+      },
+      {
+        text: "Você é pessoa com deficiência (PcD)?",
+        options: [
+          { label: "Sim", next: 'resultado', breadcrumb: "PcD" },
+          { label: "Não", next: 'resultado', breadcrumb: "Não PcD" }
+        ]
+      },
+      {
+        text: "Você é pessoa com deficiência (PcD)?",
+        options: [
+          { label: "Sim", next: 'resultado_pcd' },
+          { label: "Não", next: 'resultado_ac' }
+        ]
+      }
+    ];
+
+    const resultados = {
+      resultado: {
+        text: "Você se enquadra no Programa Especial para Acesso de Estudantes ao IFFar.",
+        explicacao: "Essa categoria é destinada a estudantes que cursaram o ensino fundamental em escola pública ou comunitária e atendem a critérios como renda, pertencimento étnico-racial, quilombola e/ou deficiência."
+      },
+      resultado_pcd: {
+        text: "Categoria: Pessoa com Deficiência (PcD)",
+        explicacao: "Você tem direito à cota específica de 5%, reservada a PcDs que não cursaram integralmente o Ensino Fundamental em escola pública."
+      },
+      resultado_ac: {
+        text: "Categoria: Ampla Concorrência (AC)",
+        explicacao: "Você concorrerá às vagas gerais (35%) destinadas a todos os candidatos que não atendem aos critérios de cotas."
+      }
+    };
+
+    let current = 0;
+    let trail = [];
+
+    const container = document.getElementById("simulador");
+
+    function renderQuestion(index) {
+      const q = questions[index];
+      let html = "";
+      if (trail.length > 0) {
+        html += `<div class='breadcrumbs'>Você respondeu: ${trail.join(" → ")}</div>`;
+      }
+      html += `<div class='question active'><p><strong>${q.text}</strong></p>`;
+      q.options.forEach(opt => {
+        html += `<button onclick='handleAnswer(${JSON.stringify(index)}, ${JSON.stringify(opt)})'>${opt.label}</button>`;
+      });
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function handleAnswer(index, option) {
+      if (option.breadcrumb) trail.push(option.label);
+      if (option.next === 'resultado') {
+        showResult('resultado');
+      } else if (option.next === 'resultado_pcd') {
+        showResult('resultado_pcd');
+      } else if (option.next === 'resultado_ac') {
+        showResult('resultado_ac');
+      } else {
+        renderQuestion(option.next);
+      }
+    }
+
+    function showResult(key) {
+      const r = resultados[key];
+      container.innerHTML = `<div class='result'><strong>${r.text}</strong><p>${r.explicacao}</p></div>`;
+    }
+
+    renderQuestion(0);
+  </script>
+</body>
+</html>
