@@ -2,87 +2,162 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Programa Especial para Acesso de Estudantes ao IFFar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Open Sans', Arial, sans-serif;
       background-color: #f4f4f4;
-      padding: 20px;
-      max-width: 700px;
+      padding: 30px 20px 60px;
+      max-width: 720px;
       margin: auto;
       color: #333;
+      line-height: 1.5;
+      font-size: 15px;
     }
-    h1 {
+
+    .titulo-principal {
       font-weight: 700;
-      color: #00703c;
-      margin-bottom: 10px;
+      color: #008077;
+      margin-bottom: 12px;
       text-align: center;
+      font-size: 1.8em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      user-select: none;
     }
-    h1 + p {
+
+    p.subtitle {
       font-weight: 600;
-      font-size: 1.5em;
+      font-size: 1.1em;
       color: #00703c;
-      margin-top: 30px;
-      margin-bottom: 30px;
+      margin-top: 0;
+      margin-bottom: 40px;
       text-align: center;
     }
+
     .question {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       background: #fff;
-      padding: 15px;
-      border-radius: 5px;
-      border-left: 5px solid #00703c;
+      padding: 25px 30px;
+      border-radius: 8px;
+      border-left: 6px solid #004b27;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      font-size: 1.0em;
     }
+
     .breadcrumbs {
       font-size: 0.9em;
-      color: #333;
-      background: #fff;
-      border-left: 4px solid #ccc;
-      padding: 10px;
-      margin-bottom: 15px;
+      color: #555;
+      background: #e6f0e9;
+      border-left: 5px solid #00703c;
+      padding: 12px 15px;
+      margin-bottom: 25px;
+      border-radius: 5px;
+      user-select: none;
     }
+
+    .breadcrumbs div {
+      margin: 4px 0;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 25px;
+    }
+
     button {
-      margin: 5px;
-      padding: 10px 20px;
+      margin: 10px 18px;
+      padding: 14px 30px;
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 5px;
       cursor: pointer;
-      min-width: 100px;
+      min-width: 110px;
+      font-size: 1.0em;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.15);
+      user-select: none;
     }
-    .btn-sim { background-color: #00703c; }
-    .btn-sim:hover { background-color: #005a2e; }
-    .btn-nao { background-color: #0077b6; }
-    .btn-nao:hover { background-color: #005f8a; }
-    .btn-voltar { background-color: #999; }
-    .btn-voltar:hover { background-color: #777; }
-    .btn-reiniciar { background-color: #cc6666; }
-    .btn-reiniciar:hover { background-color: #aa4444; }
+
+    .btn-sim {
+      background-color: #00703c;
+    }
+    .btn-sim:hover {
+      background-color: #005a2e;
+    }
+
+    .btn-nao {
+      background-color: #004b73;
+    }
+    .btn-nao:hover {
+      background-color: #003354;
+    }
+
     .controls {
       text-align: center;
-      margin: 15px 0;
+      margin: 70px 0 60px;
+      user-select: none;
     }
+
+    .btn-voltar {
+      background-color: #777;
+      margin-right: 50px;
+      border-radius: 2px;
+      padding: 14px 40px;
+    }
+    .btn-voltar:hover {
+      background-color: #555;
+    }
+
+    .btn-reiniciar {
+      background-color: #cc6666;
+      border-radius: 2px;
+      padding: 14px 40px;
+    }
+    .btn-reiniciar:hover {
+      background-color: #aa4444;
+    }
+
     .result {
-      background-color: #fff3e0;
-      border-left: 5px solid #ff6f00;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 5px;
+      background-color: #eaf5ea;
+      border-left: 6px solid #00703c;
+      padding: 25px 30px;
+      margin-top: 35px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      font-size: 1.0em;
+      color: #004b27;
+      line-height: 1.6;
     }
+
+    .result strong {
+      font-size: 1.3em;
+      display: block;
+      margin-bottom: 10px;
+      color: #005a2e;
+    }
+
     .logo {
       text-align: center;
-      margin-top: 50px;
+      margin-top: 60px;
+      user-select: none;
     }
+
     .logo img {
       max-width: 200px;
+      filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.1));
     }
   </style>
 </head>
 <body>
-  <h1>Vamos te ajudar a identificar a sua categoria de cota no IFFar</h1>
-  <p>Programa Especial para Acesso de Estudantes ao IFFar</p>
+  <h1 class="titulo-principal">
+    Vamos te ajudar a identificar a <br />
+    sua categoria de cota no IFFar
+  </h1>
+  <p class="subtitle">Programa Especial para Acesso de Estudantes ao IFFar</p>
 
   <div id="simulador"></div>
 
@@ -97,28 +172,129 @@
 
   <script>
     const questions = [
-      { text: "Você cursou integralmente o Ensino Fundamental em escola pública ou em escolas comunitárias no âmbito da Educação do Campo?", options: [ { label: "Sim", next: 1 }, { label: "Não", next: 8 } ] },
-      { text: "Tem renda familiar bruta mensal igual ou inferior a 1 salário mínimo por pessoa?", options: [ { label: "Sim", next: 2 }, { label: "Não", next: 5 } ] },
-      { text: "Você se autodeclara preto, pardo ou indígena (PPI)?", options: [ { label: "Sim", next: 'LB_PPI' }, { label: "Não", next: 3 } ] },
-      { text: "Você se autodeclara quilombola?", options: [ { label: "Sim", next: 'LB_Q' }, { label: "Não", next: 4 } ] },
-      { text: "Você é pessoa com deficiência (PcD)?", options: [ { label: "Sim", next: 'LB_PcD' }, { label: "Não", next: 'LB_EP' } ] },
-      { text: "Você se autodeclara preto, pardo ou indígena (PPI)?", options: [ { label: "Sim", next: 'LI_PPI' }, { label: "Não", next: 6 } ] },
-      { text: "Você se autodeclara quilombola?", options: [ { label: "Sim", next: 'LI_Q' }, { label: "Não", next: 7 } ] },
-      { text: "Você é pessoa com deficiência (PcD)?", options: [ { label: "Sim", next: 'LI_PcD' }, { label: "Não", next: 'LI_EP' } ] },
-      { text: "Você é pessoa com deficiência (PcD)?", options: [ { label: "Sim", next: 'PcD' }, { label: "Não", next: 'AC' } ] }
+      {
+        text: "Cursou integralmente o ensino fundamental em escola pública ou em escolas comunitárias no âmbito da Educação do Campo?",
+        options: [
+          { label: "Sim", next: 1 },
+          { label: "Não", next: 8 }
+        ]
+      },
+      {
+        text: "Tem renda familiar bruta mensal igual ou inferior a 1,0 salário mínimo por pessoa?",
+        options: [
+          { label: "Sim", next: 2 },
+          { label: "Não", next: 5 }
+        ]
+      },
+      {
+        text: "Autodeclarado Quilombola (Q)?",
+        options: [
+          { label: "Sim", next: "LB_Q" },
+          { label: "Não", next: 3 }
+        ]
+      },
+      {
+        text: "Autodeclarado PPI?",
+        options: [
+          { label: "Sim", next: 4 },
+          { label: "Não", next: 7 }
+        ]
+      },
+      {
+        text: "Pessoa com deficiência?",
+        options: [
+          { label: "Sim", next: "LB_PCD" },
+          { label: "Não", next: "LB_PPI" }
+        ]
+      },
+      {
+        text: "Autodeclarado Quilombola (Q)?",
+        options: [
+          { label: "Sim", next: "LI_Q" },
+          { label: "Não", next: 6 }
+        ]
+      },
+      {
+        text: "Autodeclarado PPI?",
+        options: [
+          { label: "Sim", next: 7 },
+          { label: "Não", next: 9 }
+        ]
+      },
+      {
+        text: "Pessoa com deficiência?",
+        options: [
+          { label: "Sim", next: "LI_PCD" },
+          { label: "Não", next: "LI_EP" }
+        ]
+      },
+      {
+        text: "Pessoa com deficiência?",
+        options: [
+          { label: "Sim", next: "PcD" },
+          { label: "Não", next: "AC" }
+        ]
+      },
+      {
+        text: "Pessoa com deficiência?",
+        options: [
+          { label: "Sim", next: "LI_PCD" },
+          { label: "Não", next: "LI_EP" }
+        ]
+      }
     ];
 
     const resultados = {
-      LB_PPI: { nome: "Cota LB_PPI", explicacao: "Candidatos autodeclarados pretos, pardos ou indígenas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público." },
-      LB_Q: { nome: "Cota LB_Q", explicacao: "Candidatos autodeclarados quilombolas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público." },
-      LB_PcD: { nome: "Cota LB_PCD", explicacao: "Candidatos que são pessoas com deficiência, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público, independentemente de raça/etnia." },
-      LB_EP: { nome: "Cota LB_EP", explicacao: "Candidatos com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público, independentemente de raça/etnia." },
-      LI_PPI: { nome: "Cota LI_PPI", explicacao: "Candidatos autodeclarados pretos, pardos ou indígenas, independentemente da renda e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público." },
-      LI_Q: { nome: "Cota LI_Q", explicacao: "Candidatos autodeclarados quilombolas, independentemente da renda e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público." },
-      LI_PcD: { nome: "Cota LI_PCD", explicacao: "Candidatos que são pessoas com deficiência, independentemente da renda e raça/etnia e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público." },
-      LI_EP: { nome: "Cota LI_EP", explicacao: "Candidatos, independentemente da renda e da raça/etnia, que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias no âmbito da educação do campo conveniadas com o poder público." },
-      PcD: { nome: "Cota PcD", explicacao: "Pessoa com deficiência (PcD) que não cursou integralmente o Ensino Fundamental em escola pública." },
-      AC: { nome: "Ampla Concorrência", explicacao: "Vagas gerais destinadas a candidatos que não atendem critérios de cotas." }
+      LB_PPI: {
+        nome: "Cota LB_PPI",
+        explicacao:
+          "Candidatos autodeclarados pretos, pardos ou indígenas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
+      },
+      LB_Q: {
+        nome: "Cota LB_Q",
+        explicacao:
+          "Candidatos autodeclarados quilombolas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
+      },
+      LB_PCD: {
+        nome: "Cota LB_PCD",
+        explicacao:
+          "Candidatos que são pessoas com deficiência, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público, independentemente de raça/etnia."
+      },
+      LB_EP: {
+        nome: "Cota LB_EP",
+        explicacao:
+          "Candidatos com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público, independentemente de raça/etnia."
+      },
+      LI_PPI: {
+        nome: "Cota LI_PPI",
+        explicacao:
+          "Candidatos autodeclarados pretos, pardos ou indígenas, independentemente da renda e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
+      },
+      LI_Q: {
+        nome: "Cota LI_Q",
+        explicacao:
+          "Candidatos autodeclarados quilombolas, independentemente da renda e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
+      },
+      LI_PCD: {
+        nome: "Cota LI_PCD",
+        explicacao:
+          "Candidatos que são pessoas com deficiência, independentemente da renda e raça/etnia e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
+      },
+      LI_EP: {
+        nome: "Cota LI_EP",
+        explicacao:
+          "Candidatos, independentemente da renda e da raça/etnia, que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
+      },
+      PcD: {
+        nome: "Cota PcD",
+        explicacao:
+          "Pessoas com Deficiência (PcD) sem vínculo com escola pública."
+      },
+      AC: {
+        nome: "Ampla Concorrência",
+        explicacao:
+          "Ampla Concorrência é a categoria geral, na qual participam todos os candidatos, independente de terem ou não se inscrito nas cotas, e também aqueles que não se enquadram em nenhuma das opções de reserva de vagas ou que não desejam participar delas."
+      }
     };
 
     let trail = [];
@@ -132,22 +308,22 @@
 
       if (trail.length > 0) {
         html += `<div class='breadcrumbs'><strong>Caminho até aqui:</strong><br/>`;
-        trail.forEach(t => html += `<div>➡ ${t.pergunta} <strong>${t.resposta}</strong></div>`);
+        trail.forEach(t => (html += `<div>➡ ${t.pergunta} <strong>${t.resposta}</strong></div>`));
         html += `</div>`;
       }
 
-      html += `<div class='question'><p><strong>${q.text}</strong></p>`;
+      html += `<div class='question'><p><strong>${q.text}</strong></p><div class="button-container">`;
       q.options.forEach(opt => {
         const btnClass = opt.label === "Sim" ? "btn-sim" : "btn-nao";
         html += `<button class='${btnClass}' onclick='handleAnswer("${opt.label}", "${opt.next}")'>${opt.label}</button>`;
       });
-      html += `</div>`;
+      html += `</div></div>`;
       container.innerHTML = html;
     }
 
     function handleAnswer(resposta, next) {
       trail.push({ pergunta: questions[currentIndex].text, resposta: resposta });
-      if (resultados[next]) {
+      if (typeof next === "string" && resultados[next]) {
         showResult(next);
       } else {
         renderQuestion(parseInt(next));
@@ -157,7 +333,7 @@
     function showResult(key) {
       const r = resultados[key];
       let html = `<div class='breadcrumbs'><strong>Caminho até aqui:</strong><br/>`;
-      trail.forEach(t => html += `<div>➡ ${t.pergunta} <strong>${t.resposta}</strong></div>`);
+      trail.forEach(t => (html += `<div>➡ ${t.pergunta} <strong>${t.resposta}</strong></div>`));
       html += `</div>`;
       html += `<div class='result'><strong>Categoria: ${r.nome}</strong><p>${r.explicacao}</p></div>`;
       container.innerHTML = html;
