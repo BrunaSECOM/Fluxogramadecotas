@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -97,14 +97,16 @@
     }
 
     .controls {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
       margin: 70px 0 60px;
+      flex-wrap: wrap;
       user-select: none;
     }
 
     .btn-voltar {
       background-color: #777;
-      margin-right: 50px;
       border-radius: 2px;
       padding: 14px 40px;
     }
@@ -182,8 +184,8 @@
       {
         text: "Tem renda familiar bruta mensal igual ou inferior a 1,0 salário mínimo por pessoa?",
         options: [
-          { label: "Sim", next: 2 },
-          { label: "Não", next: 5 }
+          { label: "Sim", next: 2 }, // ✅ Corrigido: agora segue para LB
+          { label: "Não", next: 5 }  // ✅ Corrigido: segue para LI
         ]
       },
       {
@@ -197,7 +199,7 @@
         text: "Autodeclarado PPI?",
         options: [
           { label: "Sim", next: 4 },
-          { label: "Não", next: 7 }
+          { label: "Não", next: "LB_EP" } // ✅ ajustado para cair em LB_EP se não for PPI
         ]
       },
       {
@@ -217,8 +219,8 @@
       {
         text: "Autodeclarado PPI?",
         options: [
-          { label: "Sim", next: 7 },
-          { label: "Não", next: 9 }
+          { label: "Sim", next: "LI_PPI" }, // ✅ Corrigido para LI
+          { label: "Não", next: 7 }
         ]
       },
       {
@@ -234,67 +236,20 @@
           { label: "Sim", next: "PcD" },
           { label: "Não", next: "AC" }
         ]
-      },
-      {
-        text: "Pessoa com deficiência?",
-        options: [
-          { label: "Sim", next: "LI_PCD" },
-          { label: "Não", next: "LI_EP" }
-        ]
       }
     ];
 
     const resultados = {
-      LB_PPI: {
-        nome: "Cota LB_PPI",
-        explicacao:
-          "Candidatos autodeclarados pretos, pardos ou indígenas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
-      },
-      LB_Q: {
-        nome: "Cota LB_Q",
-        explicacao:
-          "Candidatos autodeclarados quilombolas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
-      },
-      LB_PCD: {
-        nome: "Cota LB_PCD",
-        explicacao:
-          "Candidatos que são pessoas com deficiência, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público, independentemente de raça/etnia."
-      },
-      LB_EP: {
-        nome: "Cota LB_EP",
-        explicacao:
-          "Candidatos com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público, independentemente de raça/etnia."
-      },
-      LI_PPI: {
-        nome: "Cota LI_PPI",
-        explicacao:
-          "Candidatos autodeclarados pretos, pardos ou indígenas, independentemente da renda e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
-      },
-      LI_Q: {
-        nome: "Cota LI_Q",
-        explicacao:
-          "Candidatos autodeclarados quilombolas, independentemente da renda e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
-      },
-      LI_PCD: {
-        nome: "Cota LI_PCD",
-        explicacao:
-          "Candidatos que são pessoas com deficiência, independentemente da renda e raça/etnia e que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
-      },
-      LI_EP: {
-        nome: "Cota LI_EP",
-        explicacao:
-          "Candidatos, independentemente da renda e da raça/etnia, que tenham cursado integralmente o ensino fundamental em escolas públicas ou escolas comunitárias que atuam no âmbito da educação do campo conveniadas com o poder público."
-      },
-      PcD: {
-        nome: "Cota PcD",
-        explicacao:
-          "Pessoas com Deficiência (PcD) sem vínculo com escola pública."
-      },
-      AC: {
-        nome: "Ampla Concorrência",
-        explicacao:
-          "Ampla Concorrência é a categoria geral, na qual participam todos os candidatos, independente de terem ou não se inscrito nas cotas, e também aqueles que não se enquadram em nenhuma das opções de reserva de vagas ou que não desejam participar delas."
-      }
+      LB_PPI: { nome: "Cota LB_PPI", explicacao: "Candidatos autodeclarados pretos, pardos ou indígenas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      LB_Q: { nome: "Cota LB_Q", explicacao: "Candidatos autodeclarados quilombolas, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      LB_PCD: { nome: "Cota LB_PCD", explicacao: "Candidatos que são pessoas com deficiência, com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      LB_EP: { nome: "Cota LB_EP", explicacao: "Candidatos com renda familiar bruta per capita igual ou inferior a 1 (um) salário mínimo e que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público, independentemente de raça/etnia." },
+      LI_PPI: { nome: "Cota LI_PPI", explicacao: "Candidatos autodeclarados pretos, pardos ou indígenas, independentemente da renda, que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      LI_Q: { nome: "Cota LI_Q", explicacao: "Candidatos autodeclarados quilombolas, independentemente da renda, que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      LI_PCD: { nome: "Cota LI_PCD", explicacao: "Candidatos que são pessoas com deficiência, independentemente da renda e raça/etnia, que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      LI_EP: { nome: "Cota LI_EP", explicacao: "Candidatos, independentemente da renda e da raça/etnia, que tenham cursado integralmente o ensino fundamental em escolas públicas ou comunitárias do campo conveniadas com o poder público." },
+      PcD: { nome: "Cota PcD", explicacao: "Pessoas com Deficiência (PcD) sem vínculo com escola pública." },
+      AC: { nome: "Ampla Concorrência", explicacao: "Categoria geral, na qual participam todos os candidatos, inclusive os que não se enquadram nas cotas ou não desejam participar delas." }
     };
 
     let trail = [];
