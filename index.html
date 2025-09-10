@@ -175,31 +175,38 @@
   <script>
     const questions = [
       {
+        text: "Você vai cursar:",
+        options: [
+          { label: "Cursos Técnicos Integrados ou EJA/EPT", next: 1 },
+          { label: "Curso Técnico Subsequente ou Graduação", next: 9 }
+        ]
+      },
+      {
         text: "Cursou integralmente o ensino fundamental em escola pública ou em escolas comunitárias no âmbito da Educação do Campo?",
         options: [
-          { label: "Sim", next: 1 },
+          { label: "Sim", next: 2 },
           { label: "Não", next: 8 }
         ]
       },
       {
         text: "Tem renda familiar bruta mensal igual ou inferior a 1,0 salário mínimo por pessoa?",
         options: [
-          { label: "Sim", next: 2 }, // ✅ Corrigido: agora segue para LB
-          { label: "Não", next: 5 }  // ✅ Corrigido: segue para LI
+          { label: "Sim", next: 3 },
+          { label: "Não", next: 6 }
         ]
       },
       {
         text: "Autodeclarado Quilombola (Q)?",
         options: [
           { label: "Sim", next: "LB_Q" },
-          { label: "Não", next: 3 }
+          { label: "Não", next: 4 }
         ]
       },
       {
         text: "Autodeclarado PPI?",
         options: [
-          { label: "Sim", next: 4 },
-          { label: "Não", next: "LB_EP" } // ✅ ajustado para cair em LB_EP se não for PPI
+          { label: "Sim", next: 5 },
+          { label: "Não", next: "LB_EP" }
         ]
       },
       {
@@ -213,20 +220,13 @@
         text: "Autodeclarado Quilombola (Q)?",
         options: [
           { label: "Sim", next: "LI_Q" },
-          { label: "Não", next: 6 }
+          { label: "Não", next: 7 }
         ]
       },
       {
         text: "Autodeclarado PPI?",
         options: [
-          { label: "Sim", next: "LI_PPI" }, // ✅ Corrigido para LI
-          { label: "Não", next: 7 }
-        ]
-      },
-      {
-        text: "Pessoa com deficiência?",
-        options: [
-          { label: "Sim", next: "LI_PCD" },
+          { label: "Sim", next: "LI_PPI" },
           { label: "Não", next: "LI_EP" }
         ]
       },
@@ -235,6 +235,13 @@
         options: [
           { label: "Sim", next: "PcD" },
           { label: "Não", next: "AC" }
+        ]
+      },
+      {
+        text: "Cursou integralmente o ensino médio em escola pública ou em escolas comunitárias no âmbito da Educação do Campo?",
+        options: [
+          { label: "Sim", next: 2 },
+          { label: "Não", next: 8 }
         ]
       }
     ];
@@ -269,7 +276,7 @@
 
       html += `<div class='question'><p><strong>${q.text}</strong></p><div class="button-container">`;
       q.options.forEach(opt => {
-        const btnClass = opt.label === "Sim" ? "btn-sim" : "btn-nao";
+        const btnClass = opt.label.includes("Curso") || opt.label.includes("Cursos") ? "btn-sim" : (opt.label === "Sim" ? "btn-sim" : "btn-nao");
         html += `<button class='${btnClass}' onclick='handleAnswer("${opt.label}", "${opt.next}")'>${opt.label}</button>`;
       });
       html += `</div></div>`;
